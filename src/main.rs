@@ -52,7 +52,9 @@ impl Application for Chip8App {
     }
 
     fn update(&mut self, msg: Self::Message) -> Command<Self::Message> {
+        println!("update called");
         let chip_msg = self.chip_rx.try_recv().unwrap_or(Chip8Message::None);
+        println!("{:?}", chip_msg);
         match chip_msg {
             Chip8Message::None => Command::none(),
             Chip8Message::ClearScreen => {
